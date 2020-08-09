@@ -50,14 +50,18 @@ public class HomeController {
 		if (pageOpt.isPresent()) {
 			page = pageOpt.get();
 		}
-		Optional<LoaiSanPham> lsp = loaisanphamService.findById(malsp);
+		Optional<LoaiSanPham> Optlsp = loaisanphamService.findById(malsp);
 		Pageable pageable = PageRequest.of(page, 12);
 		Page<SanPham> list = (Page<SanPham>) sanphamService.findSanPhamByMaLSP(malsp, pageable);
 		model.addAttribute("dssptheoloai", list);
 		model.addAttribute("maloaisp", malsp);
 		model.addAttribute("curentPage", page);
 		model.addAttribute("total", list.getTotalPages());
-		model.addAttribute("lsp", lsp.get());
+		if (Optlsp.isPresent()) {
+			LoaiSanPham lsp = Optlsp.get();
+			model.addAttribute("tenlsp", lsp.getTenLSP());
+		}
+		
 		// session.setAttribute("nd", session.getAttribute("nd"));
 		return "product/DSSPTheoLoai";
 	}
