@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>Thêm Khuyến Mãi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="Responsive bootstrap 4 admin template" name="description">
+<meta content="Coderthemes" name="author">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- App favicon -->
+<link rel="shortcut icon" href="/assets/images/nsx1.ico">
+
+<!-- third party css -->
+<link href="/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css">
+<link href="/assets/libs/datatables/select.bootstrap4.min.css"
+	rel="stylesheet" type="text/css">
+
+
+<!-- App css -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" id="bootstrap-stylesheet">
+<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/app.min.css" rel="stylesheet" type="text/css"
+	id="app-stylesheet">
+
+</head>
+
+<body>
+
+	<!-- Begin page -->
+	<div id="wrapper">
+
+
+		<!-- Topbar Start -->
+		<div class="navbar-custom">
+					<ul class="list-unstyled topnav-menu float-right mb-0">
+				<li class="dropdown notification-list"><a
+					class="nav-link dropdown-toggle nav-user mr-0 waves-effect"
+					data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+					aria-expanded="false"> <img
+						src="/images/icon/icons8-male-user-48.png" alt="user-image"
+						class="rounded-circle"> <span
+						th:text="${session.adminacout.username}"
+						class="pro-user-name ml-1"> <i class="mdi mdi-chevron-down"></i>
+					</span>
+				</a>
+					<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+						<!-- item-->
+						<div class="dropdown-header noti-title">
+							<h6 class="text-overflow m-0">Xin Chào!</h6>
+						</div>
+
+						<!-- item-->
+						<a th:if="${session.adminacout.username=='admin'}"
+							th:href="@{/admin/addManager}" class="dropdown-item notify-item">
+							<i class="mdi mdi-account-outline"></i> <span>Add Admin</span>
+						</a> <a th:href="@{/admin/changepassworld}"
+							class="dropdown-item notify-item"> <i
+							class="mdi mdi-account-outline"></i> <span>Thay đổi mật
+								khẩu</span>
+						</a>
+						<div class="dropdown-divider"></div>
+
+						<!-- item-->
+						<a th:href="@{/admin/adminlogin}"
+							class="dropdown-item notify-item"> <i
+							class="mdi mdi-logout-variant"></i> <span>Logout</span>
+						</a>
+
+					</div></li>
+			</ul>
+			<!-- LOGO -->
+				<div class="logo-box">
+				<a th:href="@{'/adminindex/index'}" class="logo text-center logo-dark"> <span
+					class="logo-lg"> <img src="/assets/images/logo-dark.png"
+						alt="" height="18"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
+						<img src="/assets/images/nsx1.png" alt="" height="22">
+				</span>
+				</a> <a th:href="@{'/adminindex/index'}" class="logo text-center logo-light"> <span
+					class="logo-lg"> <img src="/assets/images/logo.png" alt=""
+						height="55"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
+						<img src="/assets/images/nsx1.png" alt="" height="40">
+				</span>
+				</a>
+			</div>
+
+			<!-- LOGO -->
+
+
+			<ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+				<li>
+					<button class="button-menu-mobile waves-effect">
+						<i class="mdi mdi-menu"></i>
+					</button>
+				</li>
+
+
+			</ul>
+		</div>
+		<!-- end Topbar -->
+		<!-- ========== Left Sidebar Start ========== -->
+		<div class="left-side-menu">
+
+			<div class="slimscroll-menu">
+
+				<!--- Sidemenu -->
+				<div id="sidebar-menu">
+					<ul class="metismenu" id="side-menu">
+
+						<li class="menu-title">Thanh điều hướng</li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="ion-md-speedometer"></i> <span> Tổng Hợp Báo
+									Cáo </span> <span class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/adminindex/index'}"> Báo Cáo Tổng </a></li>
+							</ul></li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-sprout"></i> <span> Sản Phẩm </span> <span
+								class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/adminsp/listproducts'}">Danh Sách
+										Sản Phẩm</a></li>
+								<li><a th:href="@{'/adminsp/add'}">Thêm Mới Sản Phẩm</a></li>
+							</ul></li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-leaf"></i> <span> Loại Sản Phẩm </span> <span
+								class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/loaisanpham/listlsp'}">Danh Sách
+										Loại Sản Phẩm</a></li>
+								<li><a th:href="@{'/loaisanpham/addlsp'}">Thêm Mới Loại
+										Sản Phẩm</a></li>
+							</ul></li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-file-document-box-multiple"></i> <span>
+									Hóa Đơn </span> <span class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/adminhd/listhdchuagiao'}">Hóa Đơn
+										Chưa Giao</a></li>
+								<li><a th:href="@{'/adminhd/listhddagiao'}">Hóa Đơn Đã
+										Giao</a></li>
+							</ul></li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-account-multiple"></i> <span> Khách
+									Hàng </span> <span class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{/nguoidung/listusers}">Danh Sách
+										Khách Hàng</a></li>
+										<li><a th:href="@{/danhgia/danhsach}">Đánh Giá
+										Khách Hàng</a></li>
+							</ul></li>
+
+						<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-sale"></i> <span> Khuyến Mãi </span> <span
+								class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/promotions/listpromotions'}">Danh
+										Sách Khuyến Mãi</a></li>
+								<li><a th:href="@{'/promotions/add'}">Thêm Khuyến Mãi</a></li>
+							</ul></li>
+							<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-sale"></i> <span>PT Thanh Toán </span> <span
+								class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/payments/listPayment'}">Danh
+										Sách Thanh Toán</a></li>
+								<li><a th:href="@{'/payments/add'}">Thêm PT Thanh Toán</a></li>
+							</ul></li>
+					<li><a href="javascript: void(0);" class="waves-effect">
+								<i class="mdi mdi-tablet-dashboard"></i> <span> Thống Kê
+							</span> <span class="menu-arrow"></span>
+						</a>
+							<ul class="nav-second-level" aria-expanded="false">
+								<li><a th:href="@{'/thongkehd'}">Thống Kê Doanh Thu</a></li>
+								<li><a th:href="@{'/thongkesp'}">Thống Kê Sản Phẩm</a></li>
+								<li><a th:href="@{'/thongkekh'}">Thống Kê Khách Hàng</a></li>
+							</ul></li>
+					</ul>
+
+				</div>
+				<!-- End Sidebar -->
+
+				<div class="clearfix"></div>
+
+			</div>
+			<!-- Sidebar -left -->
+
+		</div>
+		<!-- Left Sidebar End -->
+
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
+
+		<div class="content-page">
+			<div class="content">
+
+				<!-- Start Content-->
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box">
+								<h4 class="page-title" >Sửa Khuyến
+									Mãi</h4>
+								
+
+								<div class="page-title-right">
+									<ol class="breadcrumb p-0 m-0">
+										<li class="breadcrumb-item"><a href="#">Nông Sản Xanh</a></li>
+										<li class="breadcrumb-item"><a href="#">Khuyến Mãi</a></li>
+										<li class="breadcrumb-item active">Sửa Khuyến Mãi</li>
+									</ol>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+							
+								<div th:if="${message != null}"  class="alert alert-info" role="alert">
+									<h5 style="color: red;" th:text="${message}"></h5>
+								</div>
+								<div class="card-body">
+									<form th:action="@{/promotions/Update}"
+										th:object="${khuyenmaiDto}" method="post"
+										enctype="multipart/form-data">
+										<div class="form-row">
+											<div class="form-group col-md-6" >
+												<label class="col-form-label" for="maKM" >Mã khuyến mãi:</label> <input
+												 type="text" th:field="*{maKM}"
+													class="form-control" placeholder="Mã khuyến mãi"  readonly="readonly">
+											</div>
+											<div class="form-group col-md-6">
+												<label class="col-form-label">Tên khuyến mãi</label> <input
+													type="text" th:field="*{tenKM}" class="form-control"
+													placeholder="Tên chương trình khuyến mãi">
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label class="col-form-label">Ngày bắt đầu</label> <input
+													type="date" th:field="*{ngaybatdau}" class="form-control"
+													placeholder="Ngày nhập hàng">
+											</div>
+											<div class="form-group col-md-6">
+												<label class="col-form-label">Ngày kết thúc</label> <input
+													type="date" class="form-control" th:field="*{ngayketthuc}"
+													placeholder="Ngày hết hạn">
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label class="col-form-label" for="amt">Giảm giá</label> 											
+												<input
+													type="number" th:field="*{giamgia}" class="form-control"
+													placeholder="Giảm giá">																				
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputAddress">Chi tiết khuyến mãi</label>
+											<textarea class="form-control" th:field="*{chitietKM}"
+												placeholder="Chi tiết khuyến mãi"></textarea>
+										</div>
+										
+										<button type="submit" class="btn btn-primary" >Sửa</button>
+										<a th:href="@{/promotions/listpromotions}" class="btn btn-success">Quay lại trang danh sách khuyễn mãi</a>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end row -->
+
+			</div>
+			<!-- end container-fluid -->
+
+		</div>
+		<!-- end content -->
+
+
+
+		<!-- Footer Start -->
+		<footer class="footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">Hệ Thống Quản Lý Công Ty Nông Sản Xanh</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end Footer -->
+
+	</div>
+
+	<!-- ============================================================== -->
+	<!-- End Page content -->
+	<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+	<!-- Vendor js -->
+	<script src="/assets/js/vendor.min.js"></script>
+
+	<!-- Required datatable js -->
+	<script src="/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script src="/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+	<!-- Buttons examples -->
+	<script src="/assets/libs/datatables/dataTables.buttons.min.js"></script>
+	<script src="/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+	<script src="/assets/libs/jszip/jszip.min.js"></script>
+	<script src="/assets/libs/pdfmake/pdfmake.min.js"></script>
+	<script src="/assets/libs/pdfmake/vfs_fonts.js"></script>
+	<script src="/assets/libs/datatables/buttons.html5.min.js"></script>
+	<script src="/assets/libs/datatables/buttons.print.min.js"></script>
+
+	<!-- Responsive examples -->
+	<script src="/assets/libs/datatables/dataTables.responsive.min.js"></script>
+	<script src="/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+	<script src="/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+	<script src="/assets/libs/atatables/dataTables.select.min.js"></script>
+
+	<!-- Datatables init -->
+	<script src="/assets/js/pages/datatables.init.js"></script>
+
+	<!-- App js -->
+	<script src="/assets/js/app.min.js"></script>
+
+</body>
+
+</html>

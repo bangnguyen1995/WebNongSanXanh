@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admintrator - NSX</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/style1.css" type="text/css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="qaY">
+		<nav class="_1A1">
+			<div class="_3UZ">
+				<a class="_3Br"> <img src="/assets/images/logo.png"
+					class="nsx-icon _1Zu icon-nsx-logo">
+				</a>
+			</div>
+		</nav>
+		<div style="background-color: #98FB98;">
+			<div class="_2UO">
+				<div class="_3ZD _19Y _1N9">
+					<img width="invalid-value" height="invalid-value" class="_3Xa"
+						style="object-fit: contain;" src="/assets/images/bn.jpg" />
+				</div>
+				<div class="_3pD">
+				<div th:if="${message != null}" class="alert alert-danger"
+										role="alert">			
+										<h5 style="color: red;" th:text="${message}"></h5>
+									</div>
+					<form th:action="@{/admin/adminlogin}" method="post">
+						<div class="_7p8">
+							<div class="F6p">
+								<div class="_1x1">
+									<div class="_38V">Đăng nhập</div>
+								</div>
+							</div>
+							<div class="_1B7">
+								<div class="1Hk">
+									<div class="FcG">
+										<input class="_56A" type="text"
+											placeholder="Vui lòng nhập tài khoản của bạn" name="username"
+											maxlength="128">
+									</div>
+									<div class="_1pH"></div>
+								</div>
+								<div class="_3Uo">
+									<div class="FcG">
+										<input class="_56A" type="password"
+											placeholder="Vui lòng nhập mật khẩu của bạn" name="password"
+											maxlength="18">
+									</div>
+								</div>
+								<button style="background-color: #98FB98;"
+									class="_25c _2re CCz _3LF _1YK E73">Đăng nhập</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+		<!-- JS -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/js/main1.js"></script>
+</body>
+</html>

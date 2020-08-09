@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Ogani Template">
+<meta name="keywords" content="Ogani, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="/assets/images/nsx1.ico">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Nông Sản Xanh | Hàng Việt Nam Chất Lượng Cao</title>
+
+<!-- Google Font -->
+
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__left">
+							<ul>
+								<li><i class="fa fa-envelope"></i> cskh.nongsanxanhh@gmail.com</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__social">
+								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+									class="fa fa-twitter"></i></a> <a href="#"><i
+									class="fa fa-linkedin"></i></a> <a href="#"><i
+									class="fa fa-pinterest-p"></i></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/login}" title="Đăng nhập"><span>Đăng
+										Nhập &ensp;&ensp;</span></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/nguoidung/register}" title="Đăng ký tài khoản"><span>Đăng
+										Ký</span></a>
+							</div>
+							<div style="margin-right: 5px" class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/nguoidung/profile}" title="Quản Lý Tài Khoản"><i
+									class="fa fa-user-circle"></i><span
+									th:text=${session.user.tenND}></span></a>
+
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/login}" title="Đăng xuất"><img alt=""
+									src="/images/icon/icons8-export-14.png"><span>
+										Đăng xuất</span></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="header__logo">
+						<a th:href="@{'/index'}"><img src="/assets/images/logo.png"
+							alt="Nông Sản Xanh"></a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="header__menu">
+						<ul>
+							<li ><a th:href="@{'/index'}">trang chủ</a></li>
+							<li><a th:href="@{/sanpham/tatca}">sản phẩm</a></li>
+							<li class="active"><a th:href="@{/danhsachkhuyenmai}">Khuyến mãi</a></li>
+							<li><a th:href="@{/lienhe}">liên hệ</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-3">
+					<div class="header__cart">
+						<ul>
+							<li><a th:href="@{/cart/list}"><img alt=""
+									src="/images/icon/icons8-shopping-cart-32.png"
+									title="Giỏ hàng "></a></li>
+							<li><a th:href="@{/oder/findhoadonbynd}"><img alt=""
+									src="/images/icon/icons8-check-32.png" title="Đơn hàng "></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="humberger__open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+	</header>
+	<!-- Header Section End -->
+
+	<!-- Hero Section Begin -->
+	<section class="hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="hero__categories">
+						<div class="hero__categories__all">
+							<i class="fa fa-bars"></i> <span>Danh Mục</span>
+						</div>
+						<ul th:each="loaisanpham : ${loaisanpham}">
+							<li><a th:href="@{'/find/' + ${loaisanpham.maLSP}}"
+								th:text="${loaisanpham.tenLSP}"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="hero__search">
+						<div class="hero__search__form">
+							<form th:action="@{/timkiem}">
+								<input type="text" placeholder="Bạn muốn tìm kiếm gì ?"
+									name="tensp">
+								<button type="submit" class="site-btn">TÌM KIẾM</button>
+							</form>
+						</div>
+						<div class="hero__search__phone">
+							<div class="hero__search__phone__icon">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="hero__search__phone__text">
+								<h5>0236 3788898</h5>
+								<span>Hỗ trợ 24/7</span>
+							</div>
+						</div>
+					</div>
+					<div class="hero__item set-bg"
+						data-setbg="../images/hero/banner.jpg">
+						<div class="hero__text">
+							<span>Nông Sản Xanh Sạch</span>
+							<h2>
+								Rau <br />100% hữu cơ
+							</h2>
+							<p>Nhận và giao hàng miễn phí</p>
+							<a href="#" class="primary-btn">MUA NGAY</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Hero Section End -->
+
+	<!-- Featured Section Begin -->
+	<section class="featured spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Sản Phẩm Khuyến Mãi</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row featured__filter">
+				<div class="col-lg-4" th:each="dsspkm : ${dsspkhuyenmai} ">
+					<div class="product__discount__item">
+						<div class="product__discount__item__pic set-bg">
+							<img style="width: 100%" th:src="@{'/getimage/' + ${dsspkm.maSP}}">
+							<div class="product__discount__percent"
+								th:if="${dsspkm.khuyenmai.giamgia > 0}"
+								th:text="${dsspkm.khuyenmai.giamgia} + '%'"></div>
+							<ul class="product__item__pic__hover">
+								<li><a th:href="@{'/sanpham/chitiet/' + ${dsspkm.maSP}}"><i
+										class="fa fa-search" title="Chi tiết sản phẩm"></i></a></li>
+								<li><a th:href="@{'/cart/buy/' + ${dsspkm.maSP}}"><i
+										class="fa fa-shopping-cart" title="Thêm vào giỏ hàng"></i></a></li>
+							</ul>
+						</div>
+						<div class="product__discount__item__text">
+							<span th:text="${dsspkm.loaisanpham.tenLSP}"></span>
+							<h5>
+								<a th:href="@{'/sanpham/chitiet/' + ${dsspkm.maSP}}"
+									th:text="${dsspkm.tenSP}"></a>
+							</h5>
+							<div class="product__item__price"
+								th:if="${dsspkm.khuyenmai.giamgia <=0}"
+								th:text="${dsspkm.giaSP} + ' đ'"></div>
+							<div class="product__item__price"
+								th:if="${dsspkm.khuyenmai.giamgia > 0}">
+								<b
+								th:text="${#numbers.formatDecimal(dsspkm.giaSP-((dsspkm.khuyenmai.giamgia*dsspkm.giaSP)/100),0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"	></b>
+								<span th:text="${#numbers.formatDecimal(dsspkm.giaSP,0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<ul th:if="${total>0}" class="nav nav-pills justify-content-center">
+				<li th:if="${curentPage} > 0"><a
+					th:href="@{/khuyenmai/(page=${curentPage-1})}"
+					class="btn btn-light">Previous</a></li>
+				<li class="nav-item"
+					th:each="i : ${#numbers.sequence(0,dsspkhuyenmai.totalPages-1)}"><a
+					th:href="@{/khuyenmai/(page=${i})}" th:text=${i+1}
+					class="nav-link" th:classappend="${curentPage}==${i}?'active':''"></a></li>
+				<li th:if="${curentPage} < ${total-1}"><a
+					th:href="@{/khuyenmai/(page=${curentPage+1})}"
+					class="btn btn-light">Next</a></li>
+			</ul>
+		</div>
+	</section>
+	<!-- Featured Section End -->
+
+	<!-- Footer Section Begin -->
+	<footer class="footer spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="/assets/images/logo.png"
+								alt=""></a>
+						</div>
+						<ul>
+							<li>Địa chỉ: 210 Lý Thái Tông</li>
+							<li>SĐT: 0236 3788898</li>
+							<li>Email: cskh.nongsanxanhh@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+					<div class="footer__widget">
+						<h6>Trang liên kết</h6>
+						<ul>
+							<li><a href="#">Về chúng tôi</a></li>
+							<li><a href="#">Về cửa hàng của chúng tôi</a></li>
+							<li><a href="#">Mua sắm an toàn</a></li>
+							<li><a href="#">Thông tin giao hàng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+							<li><a href="#">Sơ đồ trang web của chúng tôi</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Chúng tôi là ai</a></li>
+							<li><a href="#">Dịch vụ của chúng tôi</a></li>
+							<li><a href="#">Dự án</a></li>
+							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Sự đổi mới</a></li>
+							<li><a href="#">Lời chứng thực</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget">
+						<h6>Tham gia Bản tin của chúng tôi ngay</h6>
+						<p>Nhập E-mail để nhận được cập nhật mới nhất về cửa hàng mới
+							nhất của chúng tôi và ưu đãi đặc biệt.</p>
+						<form action="#">
+							<input type="text" placeholder="Nhập email của bạn">
+							<button type="submit" class="site-btn">Đăng ký</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-instagram"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer__copyright">
+						<div class="footer__copyright__text">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								Đã đăng ký Bản quyền | Website này được thực hiện <i
+									class="fa fa-heart" aria-hidden="true"></i> bởi <a href="#"
+									target="_blank">NongSanXanh</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+						<div class="footer__copyright__payment">
+							<img src="../images/payment-item.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Js Plugins -->
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.slicknav.js"></script>
+	<script src="/js/mixitup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

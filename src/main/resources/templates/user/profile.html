@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Nông sản xanh| Hàng Việt Nam Chất Lượng Cao</title>
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="/assets/images/nsx1.ico">
+
+<link href="/css/profile.css" rel="stylesheet">
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+	<div style="background-color: white;">
+		<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__left">
+							<ul>
+								<li><i class="fa fa-envelope"></i> cskh.nongsanxanhh@gmail.com</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__social">
+								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+									class="fa fa-twitter"></i></a> <a href="#"><i
+									class="fa fa-linkedin"></i></a> <a href="#"><i
+									class="fa fa-pinterest-p"></i></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/login}" title="Đăng nhập"><span>Đăng
+										Nhập &ensp;&ensp;</span></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/nguoidung/register}" title="Đăng ký tài khoản"><span>Đăng
+										Ký</span></a>
+							</div>
+							<div style="margin-right: 5px" class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/nguoidung/profile}" title="Quản Lý Tài Khoản"><i
+									class="fa fa-user-circle"></i><span
+									th:text=${session.user.tenND}></span></a>
+
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/login}" title="Đăng xuất"><img alt=""
+									src="/images/icon/icons8-export-14.png"><span>
+										Đăng xuất</span></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="header__logo">
+						<a th:href="@{'/index'}"><img src="/assets/images/logo.png"
+							alt="Nông Sản Xanh"></a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="header__menu">
+						<ul>
+							<li ><a th:href="@{'/index'}">trang chủ</a></li>
+							<li><a th:href="@{/sanpham/tatca}">sản phẩm</a></li>
+							<li><a th:href="@{/danhsachkhuyenmai}">Khuyến mãi</a></li>
+							<li><a href="./contact.html">liên hệ</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-3">
+					<div class="header__cart">
+						<ul>
+							<li><a th:href="@{/cart/list}"><img alt=""
+									src="/images/icon/icons8-shopping-cart-32.png"
+									title="Giỏ hàng "></a></li>
+							<li><a th:href="@{/oder/findhoadonbynd}"><img alt=""
+									src="/images/icon/icons8-check-32.png" title="Đơn hàng "></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="humberger__open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+	</header>
+	<!-- Header Section End -->
+
+	<!-- Hero Section Begin -->
+	<section class="hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="hero__categories">
+						<div class="hero__categories__all">
+							<i class="fa fa-bars"></i> <span>Danh Mục</span>
+						</div>
+						<ul  style="display: none;" >
+							<li th:each="loaisanpham : ${loaisanpham}"><a th:href="@{'/find/' + ${loaisanpham.maLSP}}"
+								th:text="${loaisanpham.tenLSP}"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="hero__search">
+						<div class="hero__search__form">
+							<form th:action="@{/timkiem}">
+								<input type="text" placeholder="Bạn muốn tìm kiếm gì ?"
+									name="tensp">
+								<button type="submit" class="site-btn">TÌM KIẾM</button>
+							</form>
+						</div>
+						<div class="hero__search__phone">
+							<div class="hero__search__phone__icon">
+								<i class="fa fa-phone"></i>
+							</div>
+							<div class="hero__search__phone__text">
+								<h5>0236 3788898</h5>
+								<span>Hỗ trợ 24/7</span>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+		<!-- Hero Section End -->
+	</div>
+
+	<div class="container emp-profile">
+		<form method="post">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="profile-img">
+						<img style="height: 150px; width: 150px"
+							src="/images/user.png" alt="" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="profile-head">
+					<br> <br>
+						<h4 th:text="${session.user.tenND}" style="font-weight: bold"></h4>
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								id="home-tab" data-toggle="tab" href="#home" role="tab"
+								aria-controls="home" aria-selected="true">Thông tin</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="profile-work">
+						<p>Quản lý tài khoản</p>
+						<a th:href="@{'/nguoidung/capnhat/' + ${session.user.maND}}">Thay đổi thông tin</a><br /> 
+						<a th:href="@{/nguoidung/doimatkhau/}">Đổi mật khẩu</a><br /> 
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="tab-content profile-tab" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Họ tên</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.tenND}"></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Ngày sinh</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.ngaysinh}"></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Email</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.email}"></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Số điện thoại</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.sdt}"></p>
+								</div>
+							</div>
+								<div class="row">
+								<div class="col-md-6">
+									<label>Địa chỉ</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.diachi}"></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<label>Giới tính</label>
+								</div>
+								<div class="col-md-6">
+									<p th:text="${session.user.gioitinh ? 'Nam' : 'Nữ'}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- Footer Section Begin -->
+<footer class="footer spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="/assets/images/logo.png"
+								alt=""></a>
+						</div>
+						<ul>
+							<li>Địa chỉ: 210 Lý Thái Tông</li>
+							<li>SĐT: 0236 3788898</li>
+							<li>Email: cskh.nongsanxanhh@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+					<div class="footer__widget">
+						<h6>Trang liên kết</h6>
+						<ul>
+							<li><a href="#">Về chúng tôi</a></li>
+							<li><a href="#">Về cửa hàng của chúng tôi</a></li>
+							<li><a href="#">Mua sắm an toàn</a></li>
+							<li><a href="#">Thông tin giao hàng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+							<li><a href="#">Sơ đồ trang web </a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Chúng tôi là ai</a></li>
+							<li><a href="#">Dịch vụ của chúng tôi</a></li>
+							<li><a href="#">Dự án</a></li>
+							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Sự đổi mới</a></li>
+							<li><a href="#">Lời chứng thực</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget">
+						<h6>Tham gia Bản tin của chúng tôi ngay</h6>
+						<p>Nhập E-mail để nhận được cập nhật mới nhất về cửa hàng mới
+							nhất của chúng tôi và ưu đãi đặc biệt.</p>
+						<form action="#">
+							<input type="text" placeholder="Nhập email của bạn">
+							<button type="submit" class="site-btn">Đăng ký</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-instagram"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer__copyright">
+						<div class="footer__copyright__text">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								Đã đăng ký Bản quyền | Website này được thực hiện <i
+									class="fa fa-heart" aria-hidden="true"></i> bởi <a href="#"
+									target="_blank">NongSanXanh</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+						<div class="footer__copyright__payment">
+							<img src="../images/payment-item.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Js Plugins -->
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.slicknav.js"></script>
+	<script src="/js/mixitup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/main.js"></script>
+</body>
+</html>

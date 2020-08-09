@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Ogani Template">
+<meta name="keywords" content="Ogani, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- App favicon -->
+<link rel="shortcut icon" href="/assets/images/nsx1.ico">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Nông Sản Xanh | Hàng Việt Nam Chất Lượng Cao</title>
+
+<!-- Google Font -->
+
+
+<!-- Css Styles -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+
+<!-- Link CSS & JS Đánh Giá -->
+<link rel="stylesheet" href="/css/jquery.rateyo.min.css" type="text/css">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.rateyo.min.js"></script>
+
+<script>
+	$(function() {
+		$("#rated").rateYo({
+			rating : 0,
+			starWidth : "30px",
+			numStars : 5,
+			maxValue : 5,
+			halfStar : true,
+			multiColor : {
+				"startColor" : "#F3A113", //Organge
+				"endColor" : "#FFE437" //YELLOW
+			},
+			onChange : function(rating, rateYoInstance) {
+				$('#hdrating').val(rating);
+			}
+		});
+	});
+</script>
+</head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__left">
+							<ul>
+								<li><i class="fa fa-envelope"></i> cskh.nongsanxanhh@gmail.com</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__social">
+								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+									class="fa fa-twitter"></i></a> <a href="#"><i
+									class="fa fa-linkedin"></i></a> <a href="#"><i
+									class="fa fa-pinterest-p"></i></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/login}" title="Đăng nhập"><span>Đăng
+										Nhập &ensp;&ensp;</span></a>
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user == null}">
+								<a th:href="@{/nguoidung/register}" title="Đăng ký tài khoản"><span>Đăng
+										Ký</span></a>
+							</div>
+							<div style="margin-right: 5px" class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/nguoidung/profile}" title="Quản Lý Tài Khoản"><i
+									class="fa fa-user-circle"></i><span
+									th:text=${session.user.tenND}></span></a>
+
+							</div>
+							<div class="header__top__right__auth"
+								th:if="${session.user != null}">
+								<a th:href="@{/login}" title="Đăng xuất"><img alt=""
+									src="/images/icon/icons8-export-14.png"><span>
+										Đăng xuất</span></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="header__logo">
+						<a th:href="@{'/index'}"><img src="/assets/images/logo.png"
+							alt="Nông Sản Xanh"></a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="header__menu">
+						<ul>
+							<li ><a th:href="@{'/index'}">trang chủ</a></li>
+							<li><a th:href="@{/sanpham/tatca}">sản phẩm</a></li>
+							<li><a th:href="@{/danhsachkhuyenmai}">Khuyến mãi</a></li>
+							<li><a th:href="@{/lienhe}">liên hệ</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-3">
+					<div class="header__cart">
+						<ul>
+							<li><a th:href="@{/cart/list}"><img alt=""
+									src="/images/icon/icons8-shopping-cart-32.png"
+									title="Giỏ hàng "></a></li>
+							<li><a th:href="@{/oder/findhoadonbynd}"><img alt=""
+									src="/images/icon/icons8-check-32.png" title="Đơn hàng "></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="humberger__open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+	</header>
+	<!-- Header Section End -->
+
+	<!-- Hero Section Begin -->
+	<section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>Danh Mục</span>
+                        </div>
+                        <ul style="display: none;">
+                            <li th:each="DMLSP : ${loaisanpham}"><a th:href="@{'/find/' + ${DMLSP.maLSP}}" th:text="${DMLSP.tenLSP}"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form th:action="@{/timkiem}">
+								<input type="text" placeholder="Bạn muốn tìm kiếm gì ?"
+									name="tensp">
+								<button type="submit" class="site-btn">TÌM KIẾM</button>
+							</form>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+								<h5>0236 3788898</h5>
+								<span>Hỗ trợ 24/7</span>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	<!-- Hero Section End -->
+
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-section set-bg"
+		data-setbg="/images/breadcrumb.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="breadcrumb__text">
+						<h2>Chi Tiết Sản Phẩm</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
+
+	<!-- Product Details Section Begin -->
+	<section class="product-details spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__pic">
+						<div class="product__details__pic__item">
+							<img class="product__details__pic__item--large"
+								th:src="@{'/getimage/' + ${chitietsp.maSP}}" alt="">
+						</div>
+						<h6 style="margin-bottom: 10px ; font-weight: bold;">Hình ảnh liên quan</h6>
+						<div class="product__details__pic__slider owl-carousel"
+							>
+							<img th:each="hinhanhchitiet : ${hinhanhchitietsp}"
+								
+								th:src="@{'/getanhsp/' + ${hinhanhchitiet.maIMG}}" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__text">
+						<h3 th:text="${chitietsp.tenSP}"></h3>
+						<div class="product__details__rating">
+						
+							<script th:inline="javascript">
+									$(function() {
+										$("#rating").rateYo({
+												rating : /*[[${sosaoavg}]]*/,
+												starWidth : "18px",
+												halfStar : true,
+												multiColor : {
+													"startColor" : "#F3A113", //Organge
+													"endColor" : "#FFE437" //YELLOW
+												},
+												readOnly: true
+										});
+								});
+								</script>
+								
+							<i class="float-left" id="rating"></i> <span th:text="'(' + ${countdanhgia} + ' đánh giá)'"></span>
+						</div>
+						<div class="product__details__price"
+							th:if="${chitietsp.khuyenmai.giamgia <= 0}">
+							<span  th:text="${#numbers.formatDecimal(chitietsp.giaSP, 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></span>
+						</div>
+						<div th:if="${chitietsp.khuyenmai.giamgia > 0}">
+							<div style="float: left" class="product__details__price">
+								<span
+									style="text-decoration: line-through; color: gray; font-size: 20px"
+								 th:text="${#numbers.formatDecimal(chitietsp.giaSP, 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"	></span>
+							</div>
+							<div class="product__details__price" style="float: left;">
+								&nbsp;&nbsp; &nbsp;&nbsp;<span
+					 th:text="${#numbers.formatDecimal(chitietsp.giaSP-((chitietsp.khuyenmai.giamgia*chitietsp.giaSP)/100), 0, 'DEFAULT', 0, 'DEFAULT') + ' đ'}"	></span>
+							</div>
+							<div class="product__details__price">
+								&nbsp;&nbsp; &nbsp;&nbsp;<span
+									style="color: white; background-color: red; font-size: 20px"
+									th:text="${chitietsp.khuyenmai.giamgia} + ' % Giảm'"></span>
+							</div>
+						</div>
+						<p th:text="${chitietsp.mota}"></p>
+						<a th:href="@{'/cart/buy/' + ${chitietsp.maSP}}" class="primary-btn">Thêm Vào Giỏ Hàng</a>
+						<ul>
+							<li><b>Trọng lượng</b> <span>kg</span></li>
+							<li><b>Xuất xứ</b> <span>Việt Nam</span></li>
+							<li><b>Loại</b> <span
+								th:text="${chitietsp.loaisanpham.loai}"></span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-12" th:if="${session.user == null}">
+					<div class="product__details__tab">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Đánh
+									Giá</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tabs-1" role="tabpanel">
+								<div class="product__details__tab__desc">
+									<a class="site-btn" th:href="@{/login}" style="margin-bottom: 20px">Đăng nhập để đánh giá</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-12" th:if="${session.user != null}">
+					<div class="product__details__tab">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true"
+								style="font-size: 20px">Đánh Giá</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tabs-1" role="tabpanel">
+								<div class="product__details__tab__desc">
+									<form class="form-group row" th:action="@{/sanpham/danhgia}"
+										method="post" th:object="${danhgia}">
+										<label for="colFormLabel"
+											class="col-sm-3 col-form-label font-weight-bold">Chất
+											lượng sản phẩm</label>
+										<div class="col-sm-9" style="margin-bottom: 20px">
+											<div id="rated"></div>
+											<input type="hidden" id="hdrating" name="hdrating" value="0">
+										</div>
+										<label for="colFormLabel"
+											class="col-sm-3 col-form-label font-weight-bold">Nội
+											dung đánh giá</label>
+										<div class="col-sm-9">
+											<textarea class="form-group" name="noidung" rows="2"
+												cols="100"></textarea>
+										</div>
+										<div class="col-sm-12 text-center"
+											style="padding-bottom: 30px; border-bottom: 2px solid #ebebeb;">
+											<input type="hidden" th:value="${chitietsp.maSP}"
+												name="sanpham.maSP">
+											<button class="site-btn" type="submit">Gửi</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card" th:each="danhgia, item : ${chitietsp.danhgia}" varStatus="i" style="width: 100%">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-2">
+								<img src="https://image.ibb.co/jw55Ex/def_face.jpg"
+								 class="img img-rounded img-fluid" height="80" width="80"/> 
+									<br>
+								<p class="text-secondary text-center"
+									th:text="${danhgia.ngaydang}"></p>
+							</div>
+							<div class="col-md-10">
+								<p class="">
+									<strong th:text="${danhgia.nguoidung.tenND}"></strong>
+								</p>
+								<div class="clearfix"></div>
+								
+								<script th:inline="javascript">
+									$(function() {
+										$("#rating[[${item.index}]]").rateYo({
+												rating : /*[[${danhgia.rating}]]*/,
+												starWidth : "25px",
+												halfStar : true,
+												multiColor : {
+													"startColor" : "#F3A113", //Organge
+													"endColor" : "#FFE437" //YELLOW
+												},
+												readOnly: true
+										});
+								});
+								</script>
+								
+								<p th:id="${'rating' + item.index}"></p>
+								<p th:text="${danhgia.noidung}"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Product Details Section End -->
+
+	<!-- Related Product Section Begin -->
+	<section class="categories">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h2>Sản Phẩm Liên Quan</h2>
+					</div>
+				</div>
+				<div class="categories__slider owl-carousel">
+					<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat"
+						th:each="topSPLienQuan : ${spLienQuan}">
+						<div class="featured__item">
+							<div class="featured__item__pic set-bg">
+							<img th:src="@{'/getimage/' + ${topSPLienQuan.maSP}}">
+								<ul class="featured__item__pic__hover">
+									<li><a
+										th:href="@{'/sanpham/chitiet/' + ${topSPLienQuan.maSP}}"><i
+											class="fa fa-search" title="Chi tiết sản phẩm"></i></a></li>
+									<li><a th:href="@{'/cart/buy/' + ${topSPLienQuan.maSP}}"><i class="fa fa-shopping-cart"
+											title="Thêm vào giỏ hàng"></i></a></li>
+								</ul>
+							</div>
+							<div class="featured__item__text">
+								<h6>
+									<a href="#" th:text="${topSPLienQuan.tenSP}"></a>
+								</h6>
+								<h5 th:text="${topSPLienQuan.giaSP} + ' đ'"></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Related Product Section End -->
+
+	<!-- Footer Section Begin -->
+	<footer class="footer spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="/assets/images/logo.png"
+								alt=""></a>
+						</div>
+						<ul>
+							<li>Địa chỉ: 210 Lý Thái Tông</li>
+							<li>SĐT: 0236 3788898</li>
+							<li>Email: cskh.nongsanxanhh@gmail.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+					<div class="footer__widget">
+						<h6>Trang liên kết</h6>
+						<ul>
+							<li><a href="#">Về chúng tôi</a></li>
+							<li><a href="#">Về cửa hàng của chúng tôi</a></li>
+							<li><a href="#">Mua sắm an toàn</a></li>
+							<li><a href="#">Thông tin giao hàng</a></li>
+							<li><a href="#">Chính sách bảo mật</a></li>
+							<li><a href="#">Sơ đồ trang web </a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Chúng tôi là ai</a></li>
+							<li><a href="#">Dịch vụ của chúng tôi</a></li>
+							<li><a href="#">Dự án</a></li>
+							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Sự đổi mới</a></li>
+							<li><a href="#">Lời chứng thực</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget">
+						<h6>Tham gia Bản tin của chúng tôi ngay</h6>
+						<p>Nhập E-mail để nhận được cập nhật mới nhất về cửa hàng mới
+							nhất của chúng tôi và ưu đãi đặc biệt.</p>
+						<form action="#">
+							<input type="text" placeholder="Nhập email của bạn">
+							<button type="submit" class="site-btn">Đăng ký</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-instagram"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer__copyright">
+						<div class="footer__copyright__text">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								Đã đăng ký Bản quyền | Website này được thực hiện <i
+									class="fa fa-heart" aria-hidden="true"></i> bởi <a href="#"
+									target="_blank">NongSanXanh</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+						<div class="footer__copyright__payment">
+							<img src="../images/payment-item.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Js Plugins -->
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/jquery.slicknav.js"></script>
+	<script src="/js/mixitup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/main.js"></script>
+
+
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.rateyo.min.js"></script>
+
+</body>
+
+</html>
