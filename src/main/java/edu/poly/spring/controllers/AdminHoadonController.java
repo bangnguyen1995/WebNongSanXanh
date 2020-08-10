@@ -129,6 +129,18 @@ public class AdminHoadonController {
 	public String deletehdct(ModelMap model, @PathVariable(name = "mahdct") Integer mahdct,HttpSession session) {
 		Optional<HoaDonChiTiet> hdct = hoadonchitietservice.findById(mahdct);
 		Optional<SanPham> sanpham = sanphamservice.findById(hdct.get().getSanpham().getMaSP());
+		Optional<HoaDon> hoadon  =  hoadonservice.findById(hdct.get().getHoadon().getMaHD());
+		HoaDon hd = new HoaDon();
+		hd.setMaHD(hoadon.get().getMaHD());
+		hd.setDiachinhan(hoadon.get().getDiachinhan());
+		hd.setNgaydat(hoadon.get().getNgaydat());
+		hd.setNguoidung(hoadon.get().getNguoidung());
+		hd.setNguoinhan(hoadon.get().getNguoinhan());
+		hd.setTrangthai(hoadon.get().isTrangthai());
+		hd.setSdtNN(hoadon.get().getSdtNN());
+		hd.setPhuongthucthanhtoan(hoadon.get().getPhuongthucthanhtoan());
+		hd.setTongtien(hoadon.get().getTongtien()-(hdct.get().getSoluongmua()*hdct.get().getSanpham().getGiaSP()));
+		hoadonservice.save(hd);
 		SanPham sp = new SanPham();
 		sp.setMaSP(sanpham.get().getMaSP());
 		sp.setTenSP(sanpham.get().getTenSP());
