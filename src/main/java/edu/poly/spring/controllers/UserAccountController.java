@@ -95,7 +95,7 @@ public class UserAccountController {
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setTo(nguoidung.getEmail());
 			mailMessage.setSubject("Xác Nhận Tài Khoản - Nông Sản Xanh.");
-			mailMessage.setFrom("hunglinh9599@gmail.com");
+			mailMessage.setFrom("cskh.nongsanxanhh@gmail.com");
 			mailMessage.setText("Xin cảm ơn bạn đã đăng ký tài khoản Nông Sản Xanh.\n"
 					+ "\n Để xác nhận tài khoản của bạn, xin vui lòng bấm vào đường dẫn bên dưới: \n\n"
 					+ "http://localhost:8080/nguoidung/confirm-account?token=" + confirmationToken.getConfirmationToken()
@@ -317,7 +317,7 @@ public class UserAccountController {
 			SimpleMailMessage mailMessage = new SimpleMailMessage();
 			mailMessage.setTo(nd.get().getEmail());
 			mailMessage.setSubject("Mã Xác Nhận - Nông Sản Xanh");
-			mailMessage.setFrom("hunglinh9599@gmail.com");
+			mailMessage.setFrom("cskh.nongsanxanhh@gmail.com");
 			mailMessage.setText("Mã xác nhận.\n"
 								+ "Mã: " + token.getConfirmationToken()
 								+ "\n\n Xin cảm ơn!"
