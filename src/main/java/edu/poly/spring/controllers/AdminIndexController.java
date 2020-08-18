@@ -37,44 +37,54 @@ public class AdminIndexController {
 	HoaDonService hoadonservice;
 	@Autowired
 	HoaDonChiTietService hoadonchitietservice;
+
 	@GetMapping("/index")
-	public String index(ModelMap model,@RequestParam(defaultValue = "0") int page,HttpSession session) {
-		if (session.getAttribute("adminacout")==null) {
+	public String index(ModelMap model, @RequestParam(defaultValue = "0") int page, HttpSession session) {
+		if (session.getAttribute("adminacout") == null) {
 			return "redirect:/admin/adminlogin";
 		}
-		Date date  =new Date();
+		Date date = new Date();
 		long tongsp = sanphamservice.count();
 		long tonghdmoi = hoadonservice.countByNgaydat(date);
 		long tongnd = nguoidungservice.countByTrangthai(true);
-		model.addAttribute("tonghdmoi",tonghdmoi);
-		model.addAttribute("tongnd",tongnd);
-		model.addAttribute("tongsp",tongsp);
+		model.addAttribute("tonghdmoi", tonghdmoi);
+		model.addAttribute("tongnd", tongnd);
+		model.addAttribute("tongsp", tongsp);
 		List<HoaDonChiTiet> hdct = hoadonchitietservice.findByHoadonNgaydat(date);
 		int tongsoluongspban = 0;
 		for (HoaDonChiTiet hoadonchitiet : hdct) {
 			tongsoluongspban += hoadonchitiet.getSoluongmua();
 		}
-		model.addAttribute("soluongspban",tongsoluongspban);
+		model.addAttribute("soluongspban", tongsoluongspban);
 		Pageable pageable = PageRequest.of(page, 5);
 		Page<SanPham> listsp = (Page<SanPham>) sanphamservice.findBySoluongLessThan(50, pageable);
-		model.addAttribute("listsp",listsp);
-		model.addAttribute("listsize",listsp.getTotalElements());
+		model.addAttribute("listsp", listsp);
+		model.addAttribute("listsize", listsp.getTotalElements());
 		model.addAttribute("curentPage", page);
-		model.addAttribute("totalpagesp",listsp.getTotalPages());
+		model.addAttribute("totalpagesp", listsp.getTotalPages());
 		List<SanPham> sp = sanphamservice.findAll();
-		List<SanPham> sphethan = new ArrayList<>();	
-		
-		for(SanPham sp2 :sp) {
-			if(((sp2.getNgayhethan().getTime() - date.getTime()) / (24 * 3600 * 1000))<10 ) {
+		List<SanPham> sphethan = new ArrayList<>();
+
+		for (SanPham sp2 : sp) {
+			if (((sp2.getNgayhethan().getTime() - date.getTime()) / (24 * 3600 * 1000)) < 10) {
+				Date hn = new Date();
+				if (hn.compareTo(sp2.getNgayhethan()) > 0) {
+					sp2.setTrangthai(false);
+					sanphamservice.save(sp2);
+			
+				}
+				if (hn.compareTo(sp2.getNgayhethan()) <= 0) {
+					sp2.setTrangthai(true);
+					sanphamservice.save(sp2);}
 				sphethan.add(sp2);
 				int songay = (int) ((sp2.getNgayhethan().getTime() - date.getTime()) / (24 * 3600 * 1000));
-				
+
 			}
-		
-			model.addAttribute("listsphethan",sphethan);
+
+			model.addAttribute("listsphethan", sphethan);
 		}
-		model.addAttribute("listsphethan",sphethan);
-		model.addAttribute("listsizesphethan",sphethan.size());
+		model.addAttribute("listsphethan", sphethan);
+		model.addAttribute("listsizesphethan", sphethan.size());
 		return "admin/index";
 	}
 }

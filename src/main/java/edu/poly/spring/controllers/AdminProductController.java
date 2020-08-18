@@ -56,7 +56,7 @@ public class AdminProductController {
 				sanpham.setTrangthai(false);
 				sanphamservice.save(sanpham);
 			}
-			if(hn.compareTo(sanpham.getNgayhethan())<0) {
+			if(hn.compareTo(sanpham.getNgayhethan())<=0) {
 				sanpham.setTrangthai(true);
 				sanphamservice.save(sanpham);
 			}
