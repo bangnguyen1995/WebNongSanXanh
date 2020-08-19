@@ -266,7 +266,7 @@
 												<td
 												th:text="${#numbers.formatDecimal((listhdct.sanpham.giaSP*listhdct.soluongmua)
 													-((listhdct.sanpham.giaSP*listhdct.soluongmua*listhdct.sanpham.khuyenmai.giamgia)/100), 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></td>
-												<td><a
+												<td><a 
 													class="btn btn-icon waves-effect waves-light btn-warning"
 													th:href="@{'/adminhd/deletehdct/' + ${listhdct.maHDCT}}"><i
 														class="fas fa-times"></i></a></td>

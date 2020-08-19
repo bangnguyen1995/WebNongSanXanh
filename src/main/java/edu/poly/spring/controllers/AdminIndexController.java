@@ -75,7 +75,8 @@ public class AdminIndexController {
 				}
 				if (hn.compareTo(sp2.getNgayhethan()) <= 0) {
 					sp2.setTrangthai(true);
-					sanphamservice.save(sp2);}
+					sanphamservice.save(sp2);
+					}
 				sphethan.add(sp2);
 				int songay = (int) ((sp2.getNgayhethan().getTime() - date.getTime()) / (24 * 3600 * 1000));
 
