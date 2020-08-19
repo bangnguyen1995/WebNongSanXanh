@@ -122,7 +122,6 @@ public class AdminHoadonController {
 		List<HoaDonChiTiet> listhdct = hoadonchitietservice.findByHoadonMaHD(mahd);
 		model.addAttribute("listhdct", listhdct);
 		session.setAttribute("mahd", mahd);
-		session.setAttribute("listhdct", listhdct);
 		return "admin/ChiTietHoaDon";
 	}
 
