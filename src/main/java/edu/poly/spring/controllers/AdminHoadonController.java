@@ -122,6 +122,7 @@ public class AdminHoadonController {
 		List<HoaDonChiTiet> listhdct = hoadonchitietservice.findByHoadonMaHD(mahd);
 		model.addAttribute("listhdct", listhdct);
 		session.setAttribute("mahd", mahd);
+		session.setAttribute("listhdct", listhdct);
 		return "admin/ChiTietHoaDon";
 	}
 
@@ -139,7 +140,8 @@ public class AdminHoadonController {
 		hd.setTrangthai(hoadon.get().isTrangthai());
 		hd.setSdtNN(hoadon.get().getSdtNN());
 		hd.setPhuongthucthanhtoan(hoadon.get().getPhuongthucthanhtoan());
-		hd.setTongtien(hoadon.get().getTongtien()-(hdct.get().getSoluongmua()*hdct.get().getSanpham().getGiaSP()));
+		hd.setTongtien(hoadon.get().getTongtien()-((hdct.get().getSoluongmua()*hdct.get().getSanpham().getGiaSP())-
+				(hdct.get().getSoluongmua()*hdct.get().getSanpham().getGiaSP()*hdct.get().getSanpham().getKhuyenmai().getGiamgia()/100)));
 		hoadonservice.save(hd);
 		SanPham sp = new SanPham();
 		sp.setMaSP(sanpham.get().getMaSP());

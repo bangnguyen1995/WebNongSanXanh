@@ -197,7 +197,7 @@
 									<td th:text="${chitiethd.soluongmua + ' KG' }"></td>
 									<td th:text="${chitiethd.sanpham.khuyenmai.giamgia + ' %'}"></td>
 									<td
-							th:text="${#numbers.formatDecimal((chitiethd.sanpham.giaSP * chitiethd.soluongmua)-(chitiethd.sanpham.giaSP * chitiethd.soluongmua * chitiethd.sanpham.khuyenmai.giamgia/100), 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></td>
+							th:text="${#numbers.formatDecimal((chitiethd.sanpham.giaSP * chitiethd.soluongmua)-(chitiethd.sanpham.giaSP * chitiethd.soluongmua *chitiethd.sanpham.khuyenmai.giamgia/100), 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></td>
 								</tr>
 
 							</tbody>
