@@ -38,7 +38,7 @@
 
 		<!-- Topbar Start -->
 		<div class="navbar-custom">
-					<ul class="list-unstyled topnav-menu float-right mb-0">
+			<ul class="list-unstyled topnav-menu float-right mb-0">
 				<li class="dropdown notification-list"><a
 					class="nav-link dropdown-toggle nav-user mr-0 waves-effect"
 					data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -77,15 +77,16 @@
 
 			<!-- LOGO -->
 			<div class="logo-box">
-				<a th:href="@{'/adminindex/index'}" class="logo text-center logo-dark"> <span
-					class="logo-lg"> <img src="/assets/images/logo-dark.png"
-						alt="" height="18"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				<a th:href="@{'/adminindex/index'}"
+					class="logo text-center logo-dark"> <span class="logo-lg">
+						<img src="/assets/images/logo-dark.png" alt="" height="18">
+						<!-- <span class="logo-lg-text-dark">Velonic</span> -->
 				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
 						<img src="/assets/images/nsx1.png" alt="" height="22">
 				</span>
-				</a> <a th:href="@{'/adminindex/index'}" class="logo text-center logo-light"> <span
-					class="logo-lg"> <img src="/assets/images/logo.png" alt=""
-						height="55"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				</a> <a th:href="@{'/adminindex/index'}"
+					class="logo text-center logo-light"> <span class="logo-lg">
+						<img src="/assets/images/logo.png" alt="" height="55"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
 				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
 						<img src="/assets/images/nsx1.png" alt="" height="40">
 				</span>
@@ -164,8 +165,8 @@
 							<ul class="nav-second-level" aria-expanded="false">
 								<li><a th:href="@{/nguoidung/listusers}">Danh Sách
 										Khách Hàng</a></li>
-										<li><a th:href="@{/danhgia/danhsach}">Đánh Giá
-										Khách Hàng</a></li>
+								<li><a th:href="@{/danhgia/danhsach}">Đánh Giá Khách
+										Hàng</a></li>
 							</ul></li>
 
 						<li><a href="javascript: void(0);" class="waves-effect">
@@ -177,16 +178,16 @@
 										Sách Khuyến Mãi</a></li>
 								<li><a th:href="@{'/promotions/add'}">Thêm Khuyến Mãi</a></li>
 							</ul></li>
-							<li><a href="javascript: void(0);" class="waves-effect">
+						<li><a href="javascript: void(0);" class="waves-effect">
 								<i class="mdi mdi-sale"></i> <span>PT Thanh Toán </span> <span
 								class="menu-arrow"></span>
 						</a>
 							<ul class="nav-second-level" aria-expanded="false">
-								<li><a th:href="@{'/payments/listPayment'}">Danh
-										Sách Thanh Toán</a></li>
+								<li><a th:href="@{'/payments/listPayment'}">Danh Sách
+										Thanh Toán</a></li>
 								<li><a th:href="@{'/payments/add'}">Thêm PT Thanh Toán</a></li>
 							</ul></li>
-					
+
 						<li><a href="javascript: void(0);" class="waves-effect">
 								<i class="mdi mdi-tablet-dashboard"></i> <span> Thống Kê
 							</span> <span class="menu-arrow"></span>
@@ -247,7 +248,8 @@
 									<form th:action="@{/loaisanpham/findbytenlsp}"
 										class=" float-right form-inline active-cyan-4 mr-2 mb-2">
 										<input class="form-control form-control-md mr-2 " type="text"
-											placeholder="Tên loai sản phẩm" th:value="${tenlsp}" name="tenlsp">
+											placeholder="Tên loai sản phẩm" th:value="${tenlsp}"
+											name="tenlsp">
 										<div class="input-group-append">
 											<button class="btn btn-outline-light text-dark" type="submit">
 												<i class="fas fa-search"></i>
@@ -279,9 +281,10 @@
 
 										</tbody>
 									</table>
-
-									<ul  th:if="${total > 0}" class="nav nav-pills">
-									<li th:if="${curentPage} > 0"><a
+									<h4 th:if="${totalpage==0}" style="color: red">Không tìm thấy loại sản phẩm
+										nào</h4>
+									<ul th:if="${total > 0}" class="nav nav-pills">
+										<li th:if="${curentPage} > 0"><a
 											th:href="@{/loaisanpham/listlsp/(page=${curentPage-1})}"
 											class="btn btn-light">Previous</a></li>
 										<li class="nav-item"
@@ -289,10 +292,10 @@
 											th:href="@{/loaisanpham/listlsp/(page=${i})}" th:text=${i+1}
 											class="nav-link"
 											th:classappend="${curentPage}==${i}?'active':''"></a></li>
-											<li th:if="${curentPage} < ${total-1}"><a
+										<li th:if="${curentPage} < ${total-1}"><a
 											th:href="@{/loaisanpham/listlsp/(page=${curentPage+1})}"
 											class="btn btn-light">Next</a></li>
-											
+
 									</ul>
 									<ul th:if="${totalpage > 0}" class="nav nav-pills">
 										<li th:if="${curentPage} > 0"><a

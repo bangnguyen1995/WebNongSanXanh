@@ -290,18 +290,20 @@
 															th:if="${listhd.trangthai==false}"
 															class="badge badge-success">Chưa giao</span></td>
 												<td th:text="${#numbers.formatDecimal(listhd.tongtien, 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></td>
-												<td><a
+												<td>
+													<div class="row">
+												<a style="margin: 2px" 
 													th:href="@{'/adminhd/findhdbymahd/'+${listhd.maHD}}"
 													class="btn btn-icon waves-effect waves-light btn-warning">
 														<i class="fas fa-pencil-alt"></i>
-												</a> <a
+												</a> <a style="margin: 2px" 
 													class="btn btn-icon waves-effect waves-light btn-warning"
 													th:href="@{'/adminhd/deletehd/' + ${listhd.maHD}}"><i
-														class="fas fa-times"></i></a> <a
+														class="fas fa-times"></i></a> <a style="margin: 2px" 
 													th:href="@{'/adminhd/findbyhd/'+${listhd.maHD}}"
 													class="btn btn-icon waves-effect waves-light btn-warning">
 														<i class="fas fa-info"></i>
-												</a></td>
+												</a></div></td>
 
 											</tr>
 										</tbody>
