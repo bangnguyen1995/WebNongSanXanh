@@ -326,7 +326,7 @@
 									<div class="product__item__price"
 										th:if="${spmoinhap.khuyenmai.giamgia > 0}">
 										<b
-											th:text="${#numbers.formatDecimal(spmoinhap.giaSP-((spmoinhap.khuyenmai.giamgia*spmoinhap.giaSP)/100), 1, 0, 'COMMA')} + ' đ'"></b>
+											th:text="${#numbers.formatDecimal(spmoinhap.giaSP-((spmoinhap.khuyenmai.giamgia*spmoinhap.giaSP)/100), 0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'"></b>
 										<span th:text="${#numbers.formatDecimal(spmoinhap.giaSP,  0, 'DEFAULT', 0, 'DEFAULT')} + ' đ'" ></span>
 									</div>
 								</div>
