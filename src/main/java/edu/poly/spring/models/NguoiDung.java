@@ -45,10 +45,9 @@ public class NguoiDung {
 	@NotEmpty(message = "Hãy nhập số điện thoại")
 	@Column(length = 12)
 	private String sdt;
-	
 	@Column
 	private boolean trangthai;
-	
+	@NotNull
 	@Column
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

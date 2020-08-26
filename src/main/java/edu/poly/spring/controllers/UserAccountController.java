@@ -58,7 +58,7 @@ public class UserAccountController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerUser(ModelMap model, ModelAndView modelAndView, @Validated NguoiDung nguoidung,
 			BindingResult result, @RequestParam("xacnhanmk") String xacnhanmk) {
-		String sdt = "^[0-9]{0,99}$";
+		String sdt = "0\\d{9}";
 		String email = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		Optional<NguoiDung> existingUser = nguoidungreponsitory.findByEmailIgnoreCase(nguoidung.getEmail());
 		if (result.hasErrors()) {

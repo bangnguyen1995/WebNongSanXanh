@@ -53,8 +53,7 @@ public class OderController {
 		List<Item> list = (List<Item>) session.getAttribute("cart");
 		if (rs.hasErrors()) {
 			model.addAttribute("message", "Mua hàng không thành công.Bạn phải nhập đủ thông tin!");
-			model.addAttribute("hoadon", hoadon);
-			
+			model.addAttribute("hoadon", hoadon);	
 			double total = 0;
 			for (Item item : list) {
 				total += (item.getQuantity() * item.getSanpham().getGiaSP()) - (item.getQuantity()
@@ -67,7 +66,22 @@ public class OderController {
 			}
 			return "product/cart";
 		}
+		String sdt = "0\\d{9}";
+		if (!hoadon.getSdtNN().matches(sdt)) {
+			model.addAttribute("message", "sai số điện thoại!");
+			model.addAttribute("hoadon", hoadon);	
+			double total = 0;
+			for (Item item : list) {
+				total += (item.getQuantity() * item.getSanpham().getGiaSP()) - (item.getQuantity()
+						* item.getSanpham().getGiaSP() * item.getSanpham().getKhuyenmai().getGiamgia() / 100);
 
+			}
+			model.put("total", total);
+			if (list == null) {
+				model.put("total", 0);
+			}
+			return "product/cart";
+		}
 		NguoiDung nguoidung = (NguoiDung) session.getAttribute("user");
 		hoadon.setNguoidung(nguoidung);
 		hoadon.setNgaydat(new Date());
