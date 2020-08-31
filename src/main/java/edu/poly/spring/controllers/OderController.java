@@ -98,6 +98,7 @@ public class OderController {
 			HoaDonChiTiet hoadonchitiet = new HoaDonChiTiet();
 			hoadonchitiet.setHoadon(hoadon);
 			hoadonchitiet.setSanpham(item.getSanpham());
+			hoadonchitiet.setGiamgia(item.getSanpham().getKhuyenmai().getGiamgia());
 			hoadonchitiet.setSoluongmua(item.getQuantity());
 			hoadonchitietservice.save(hoadonchitiet);
 			Optional<SanPham> sanpham = sanphamservice.findById(item.getSanpham().getMaSP());

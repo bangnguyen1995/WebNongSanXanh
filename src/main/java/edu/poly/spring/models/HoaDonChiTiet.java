@@ -17,23 +17,14 @@ public class HoaDonChiTiet {
 	private Integer maHDCT;
 	@Column
 	private int soluongmua;
+	@Column
+	private int giamgia;
 	@ManyToOne
 	@JoinColumn(name="maSP")
 	private SanPham sanpham;
 	@ManyToOne
 	@JoinColumn(name = "maHD")
 	private HoaDon hoadon;
-	public HoaDonChiTiet(Integer maHDCT, int soluongmua, edu.poly.spring.models.SanPham sanpham,
-			edu.poly.spring.models.HoaDon hoadon) {
-		super();
-		this.maHDCT = maHDCT;
-		this.soluongmua = soluongmua;
-		this.sanpham = sanpham;
-		this.hoadon = hoadon;
-	}
-	public HoaDonChiTiet() {
-		super();
-	}
 	public Integer getMaHDCT() {
 		return maHDCT;
 	}
@@ -46,6 +37,12 @@ public class HoaDonChiTiet {
 	public void setSoluongmua(int soluongmua) {
 		this.soluongmua = soluongmua;
 	}
+	public int getGiamgia() {
+		return giamgia;
+	}
+	public void setGiamgia(int giamgia) {
+		this.giamgia = giamgia;
+	}
 	public SanPham getSanpham() {
 		return sanpham;
 	}
@@ -57,6 +54,17 @@ public class HoaDonChiTiet {
 	}
 	public void setHoadon(HoaDon hoadon) {
 		this.hoadon = hoadon;
+	}
+	public HoaDonChiTiet(Integer maHDCT, int soluongmua, int giamgia, SanPham sanpham, HoaDon hoadon) {
+		super();
+		this.maHDCT = maHDCT;
+		this.soluongmua = soluongmua;
+		this.giamgia = giamgia;
+		this.sanpham = sanpham;
+		this.hoadon = hoadon;
+	}
+	public HoaDonChiTiet() {
+		super();
 	}
 	
 	
