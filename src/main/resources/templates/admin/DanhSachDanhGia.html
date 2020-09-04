@@ -27,7 +27,12 @@
 <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
 <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css"
 	id="app-stylesheet">
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script type="text/javascript" src="/js/main3.js"></script>
 </head>
 
 <body>
@@ -38,7 +43,7 @@
 
 		<!-- Topbar Start -->
 		<div class="navbar-custom">
-					<ul class="list-unstyled topnav-menu float-right mb-0">
+			<ul class="list-unstyled topnav-menu float-right mb-0">
 				<li class="dropdown notification-list"><a
 					class="nav-link dropdown-toggle nav-user mr-0 waves-effect"
 					data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -77,15 +82,16 @@
 
 			<!-- LOGO -->
 			<div class="logo-box">
-				<a th:href="@{'/adminindex/index'}" class="logo text-center logo-dark"> <span
-					class="logo-lg"> <img src="/assets/images/logo-dark.png"
-						alt="" height="18"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				<a th:href="@{'/adminindex/index'}"
+					class="logo text-center logo-dark"> <span class="logo-lg">
+						<img src="/assets/images/logo-dark.png" alt="" height="18">
+						<!-- <span class="logo-lg-text-dark">Velonic</span> -->
 				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
 						<img src="/assets/images/nsx1.png" alt="" height="22">
 				</span>
-				</a> <a th:href="@{'/adminindex/index'}" class="logo text-center logo-light"> <span
-					class="logo-lg"> <img src="/assets/images/logo.png" alt=""
-						height="55"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
+				</a> <a th:href="@{'/adminindex/index'}"
+					class="logo text-center logo-light"> <span class="logo-lg">
+						<img src="/assets/images/logo.png" alt="" height="55"> <!-- <span class="logo-lg-text-dark">Velonic</span> -->
 				</span> <span class="logo-sm"> <!-- <span class="logo-lg-text-dark">V</span> -->
 						<img src="/assets/images/nsx1.png" alt="" height="40">
 				</span>
@@ -103,10 +109,11 @@
 				</li>
 
 				<li class="d-none d-lg-block">
-					<form class="app-search" 	th:action="@{/danhgia/findbyname}">
+					<form class="app-search" th:action="@{/danhgia/findbyname}">
 						<div class="app-search-box">
 							<div class="input-group">
-								<input type="text" class="form-control" name="tennd" placeholder="Search...">
+								<input type="text" class="form-control" name="tennd"
+									placeholder="Search...">
 								<div class="input-group-append">
 									<button class="btn" type="submit">
 										<i class="fas fa-search"></i>
@@ -177,8 +184,8 @@
 							<ul class="nav-second-level" aria-expanded="false">
 								<li><a th:href="@{/nguoidung/listusers}">Danh Sách
 										Khách Hàng</a></li>
-										<li><a th:href="@{/danhgia/danhsach}">Đánh Giá
-										Khách Hàng</a></li>
+								<li><a th:href="@{/danhgia/danhsach}">Đánh Giá Khách
+										Hàng</a></li>
 							</ul></li>
 
 						<li><a href="javascript: void(0);" class="waves-effect">
@@ -190,16 +197,16 @@
 										Sách Khuyến Mãi</a></li>
 								<li><a th:href="@{'/promotions/add'}">Thêm Khuyến Mãi</a></li>
 							</ul></li>
-							<li><a href="javascript: void(0);" class="waves-effect">
+						<li><a href="javascript: void(0);" class="waves-effect">
 								<i class="mdi mdi-sale"></i> <span>PT Thanh Toán </span> <span
 								class="menu-arrow"></span>
 						</a>
 							<ul class="nav-second-level" aria-expanded="false">
-								<li><a th:href="@{'/payments/listPayment'}">Danh
-										Sách Thanh Toán</a></li>
+								<li><a th:href="@{'/payments/listPayment'}">Danh Sách
+										Thanh Toán</a></li>
 								<li><a th:href="@{'/payments/add'}">Thêm PT Thanh Toán</a></li>
 							</ul></li>
-						
+
 						<li><a href="javascript: void(0);" class="waves-effect">
 								<i class="mdi mdi-tablet-dashboard"></i> <span> Thống Kê
 							</span> <span class="menu-arrow"></span>
@@ -254,7 +261,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-							    <table class="table table-bordered">
+									<table class="table table-bordered">
 										<thead>
 											<tr>
 												<th>Mã</th>
@@ -276,34 +283,61 @@
 												<td th:text="${dg.ngaydang}"></td>
 												<td th:text="${dg.rating} + ' Sao'"></td>
 												<td th:text="${dg.noidung}"></td>
-												<td>
-													<a class="btn btn-icon waves-effect waves-light btn-primary"
-														th:href="@{'/nguoidung/find/' + ${dg.nguoidung.maND}}" title="Xem thông tin người dùng">
-														<i class="fas fa-id-card"></i>
-													</a>
-													<a class="btn btn-icon waves-effect waves-light btn-danger"
-														th:href="@{'/danhgia/xoa/' + ${dg.maDG}}" title="Xóa đánh giá">
-														<i class="fas fa-times"></i>
-													</a>
-												</td>
+												<td><a
+													class="btn btn-icon waves-effect waves-light btn-primary"
+													th:href="@{'/nguoidung/find/' + ${dg.nguoidung.maND}}"
+													title="Xem thông tin người dùng"> <i
+														class="fas fa-id-card"></i>
+												</a> <a class="btn btn-icon waves-effect waves-light btn-danger"
+													th:href="@{'/danhgia/xoa/' + ${dg.maDG}}" id="delbtn"
+													title="Xóa đánh giá"> <i class="fas fa-times"></i>
+												</a></td>
 											</tr>
 										</tbody>
 									</table>
 									<ul th:if="${total > 0}" class="nav nav-pills">
-									<li th:if="${curentPage} > 0"><a th:href="@{/danhgia/danhsach/(page=${curentPage-1})}" class="btn btn-light">Previous</a></li>
+										<li th:if="${curentPage} > 0"><a
+											th:href="@{/danhgia/danhsach/(page=${curentPage-1})}"
+											class="btn btn-light">Previous</a></li>
 										<li class="nav-item"
 											th:each="i : ${#numbers.sequence(0,danhgia.totalPages-1)}"><a
 											th:href="@{/danhgia/danhsach/(page=${i})}" th:text=${i+1}
 											class="nav-link"
 											th:classappend="${curentPage}==${i}?'active':''"></a></li>
-											<li th:if="${curentPage} < ${total-1}"><a th:href="@{/danhgia/danhsach/(page=${curentPage+1})}" class="btn btn-light">Next</a></li>
+										<li th:if="${curentPage} < ${total-1}"><a
+											th:href="@{/danhgia/danhsach/(page=${curentPage+1})}"
+											class="btn btn-light">Next</a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- end row -->
+					<div class="myform">
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
 
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p class="alert alert-danger">Are you want to delete?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+										<a href="" id="btnhref" class="btn btn-primary">Delete</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- end container-fluid -->
 
@@ -359,7 +393,17 @@
 
 	<!-- App js -->
 	<script src="/assets/js/app.min.js"></script>
-
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
